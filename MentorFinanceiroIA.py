@@ -81,9 +81,12 @@ def coletar_dados_usuario(nome_usuario_ja_coletado=None):
     st.write(f"\nPrazer em te conhecer, {nome}! Fico muito feliz em ter você por aqui!")
     st.session_state.nome = nome  # Salva o nome no session_state
 
+    # Garante que st.session_state.preocupacao esteja definido antes do text_input
+    if 'preocupacao' not in st.session_state:
+        st.session_state.preocupacao = ""
     preocupacao = st.text_input(
         f"\n{nome}, vamos começar com o seguinte: Qual sua principal preocupação financeira ou dívida no momento? \n"
-        "(Ex: 'cartão de crédito com R$2000', 'não consigo guardar dinheiro', 'quero renegociar meu financiamento')", key="preocupacao"
+        "(Ex: 'cartão de crédito com R$2000', 'não consigo guardar dinheiro', 'quero renegociar meu financiamento')", key="preocupacao", value=st.session_state.preocupacao
     ).strip()
     if not preocupacao:
         st.warning(
@@ -92,8 +95,11 @@ def coletar_dados_usuario(nome_usuario_ja_coletado=None):
         st.stop()
     st.session_state.preocupacao = preocupacao
 
+    # Garante que st.session_state.renda_mensal esteja definido antes do text_input
+    if 'renda_mensal' not in st.session_state:
+        st.session_state.renda_mensal = ""
     renda_mensal_str = st.text_input(
-        f"\nPara te ajudar melhor, qual sua renda mensal aproximada? (Pressione Enter se preferir não informar ou sua preocupação não precise dessa informação): R$ ", key="renda_mensal"
+        f"\nPara te ajudar melhor, qual sua renda mensal aproximada? (Pressione Enter se preferir não informar ou sua preocupação não precise dessa informação): R$ ", key="renda_mensal", value=st.session_state.renda_mensal
     ).strip()
     renda_mensal = None
     if renda_mensal_str:
@@ -104,8 +110,11 @@ def coletar_dados_usuario(nome_usuario_ja_coletado=None):
             renda_mensal = None
     st.session_state.renda_mensal = renda_mensal
 
+    # Garante que st.session_state.despesa_mensal esteja definido antes do text_input
+    if 'despesa_mensal' not in st.session_state:
+        st.session_state.despesa_mensal = ""
     despesa_mensal_str = st.text_input(
-        f"\nSe preferir, Poderia informar sua despesa mensal total estimada? (Pressione Enter se preferir não informar ou sua preocupação não precise dessa informação): R$ ", key="despesa_mensal"
+        f"\nSe preferir, Poderia informar sua despesa mensal total estimada? (Pressione Enter se preferir não informar ou sua preocupação não precise dessa informação): R$ ", key="despesa_mensal", value=st.session_state.despesa_mensal
     ).strip()
     despesa_mensal = None
     if despesa_mensal_str:
@@ -116,8 +125,11 @@ def coletar_dados_usuario(nome_usuario_ja_coletado=None):
             despesa_mensal = None
     st.session_state.despesa_mensal = despesa_mensal
 
+    # Garante que st.session_state.valor_divida esteja definido antes do text_input
+    if 'valor_divida' not in st.session_state:
+        st.session_state.valor_divida = ""
     valor_divida_str = st.text_input(
-        f"\nSe sua preocupação é uma dívida específica, ou se você tem um montate total de dívidas, qual o valor aproximado dela(s)? (Pressione Enter se não aplicável ou não quiser informar): R$ ", key="valor_divida"
+        f"\nSe sua preocupação é uma dívida específica, ou se você tem um montate total de dívidas, qual o valor aproximado dela(s)? (Pressione Enter se não aplicável ou não quiser informar): R$ ", key="valor_divida", value=st.session_state.valor_divida
     ).strip()
     valor_divida = None
     if valor_divida_str:
