@@ -63,7 +63,7 @@ def aplicar_estilo():
         
         /* Estilo para caixas de alerta */
         .warning-box {
-            background-color: #fff3e0; /* Laranja claro para alerta */
+            background-color: #030202; /* Laranja claro para alerta */
             border-left: 5px solid #ff9800; /* Laranja */
             padding: 20px;
             border-radius: 8px;
