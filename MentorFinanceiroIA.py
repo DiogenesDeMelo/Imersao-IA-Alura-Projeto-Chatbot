@@ -33,7 +33,7 @@ def aplicar_estilo():
     <style>
         /* Estilo geral */
         .main {
-            background-color: #f0f4f0;
+            background-color: #7cf27c;
             padding: 20px;
         }
         
@@ -44,7 +44,7 @@ def aplicar_estilo():
         
         /* Estilo para caixas de informação */
         .info-box {
-            background-color: #e8f5e9;
+            background-color: #7cf27c;
             border-left: 5px solid #81c784;
             padding: 20px;
             border-radius: 5px;
@@ -53,7 +53,7 @@ def aplicar_estilo():
         
         /* Estilo para caixas de sucesso */
         .success-box {
-            background-color: #f1f8e9;
+            background-color: #c5ff82;
             border-left: 5px solid #4caf50;
             padding: 20px;
             border-radius: 5px;
@@ -62,7 +62,7 @@ def aplicar_estilo():
         
         /* Estilo para caixas de alerta */
         .warning-box {
-            background-color: #fffde7;
+            background-color: #f5ea73;
             border-left: 5px solid #fbc02d;
             padding: 20px;
             border-radius: 5px;
@@ -71,7 +71,7 @@ def aplicar_estilo():
         
         /* Estilo para barras de progresso */
         .stProgress > div > div {
-            background-color: #81c784;
+            background-color: #080808;
         }
         
         /* Estilo para botões */
