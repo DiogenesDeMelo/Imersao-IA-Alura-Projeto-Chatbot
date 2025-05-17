@@ -519,7 +519,7 @@ def exibir_cabecalho():
     with col2:
         if st.session_state.nome_usuario:
             st.markdown(f"<p style='text-align: right; margin-bottom: 0px;'>Olá, <strong>{st.session_state.nome_usuario}</strong>!</p>", unsafe_allow_html=True)
-            st.markdown(f"<p style='text-align: right; margin-bottom: 0px;'>Nível: {st.session_state.nivel} | Pontos: {st.session_state.pontos}</p>", unsafe_allow_html=True)
+            st.markdown(f"<p style='text-align: right; margin-bottom: 10px;'>Nível: {st.session_state.nivel} | Pontos: {st.session_state.pontos}</p>", unsafe_allow_html=True)
             medalha_html = ""
             if st.session_state.nivel >= 5: medalha_html = "<div class='badge' style='background-color: #ffd700; color: #333; float: right;'>🏆 Especialista</div>"
             elif st.session_state.nivel >= 3: medalha_html = "<div class='badge' style='background-color: #c0c0c0; float: right;'>🥈 Estrategista</div>"
