@@ -885,7 +885,7 @@ def exibir_barra_lateral():
         if st.sidebar.button("📊 Dashboard", use_container_width=True):
             st.session_state.pagina_atual = "dashboard"
         
-        if st.sidebar.button("💬 Consultor Virtual", use_container_width=True):
+        if st.sidebar.button("💬 Mentor Financeiro IA", use_container_width=True):
             st.session_state.pagina_atual = "consultor"
         
         if st.sidebar.button("📝 Diagnóstico Financeiro", use_container_width=True):
@@ -1158,7 +1158,7 @@ def pagina_consultor():
     
     st.markdown("""
     <div class="info-box">
-        <p>Compartilhe suas preocupações financeiras e receba conselhos personalizados do nosso assistente virtual.</p>
+        <p>Compartilhe suas preocupações financeiras, como dúvidas, problemas com dívidas, dificuldade de organização financeira  e receba um planejemento estratégico para melhorar sua saúde financeira.</p>
     </div>
     """, unsafe_allow_html=True)
     
@@ -1167,16 +1167,16 @@ def pagina_consultor():
     
     # Aba de Conselho Financeiro
     with tab1:
-        st.markdown("### Conselho Financeiro Personalizado")
-        st.markdown("Compartilhe sua principal preocupação financeira e receba um conselho personalizado.")
+        st.markdown("### Planejamento Financeiro Personalizado")
+        st.markdown("Compartilhe abaixo a principal preocupação financeira e receba seu planejamento personalizado.")
         
         preocupacao = st.text_area(
             "Qual sua principal preocupação financeira no momento?",
-            placeholder="Ex: Não consigo pagar meu cartão de crédito com R$2000 em dívidas",
+            placeholder="Ex: Não consigo pagar meu cartão de crédito com R$2000 em dívidas, tenho contas atrasadas, preciso de ajuda com um financiamento atrasado",
             height=100
         )
         
-        if st.button("Obter Conselho", key="btn_conselho"):
+        if st.button("Obter Planejamento", key="btn_conselho"):
             if preocupacao:
                 with st.spinner("Gerando conselho personalizado..."):
                     conselho = gerar_conselho_financeiro(preocupacao)
@@ -1891,7 +1891,7 @@ def pagina_conquistas():
                 </div>
                 """, unsafe_allow_html=True)
     else:
-        st.info("Você ainda não possui conquistas. Continue usando o aplicativo para desbloquear conquistas!")
+        st.info("Você ainda não possui conquistas. Continue usando o mentor para desbloquear conquistas!")
     
     # Exibir estatísticas
     st.markdown("### Estatísticas")
