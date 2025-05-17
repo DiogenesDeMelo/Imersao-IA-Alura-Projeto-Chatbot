@@ -5,14 +5,7 @@ import json
 import streamlit as st
 
 # --- Configuração da API Key ---
-# Instrução para o usuário:
-# 1. Acesse https://aistudio.google.com/app/apikey e crie sua API Key.
-# 2. Defina uma variável de ambiente chamada GOOGLE_API_KEY com a sua chave.
-#    No Linux/macOS: export GOOGLE_API_KEY="SUA_CHAVE_AQUI"
-#    No Windows (PowerShell): $env:GOOGLE_API_KEY="SUA_CHAVE_AQUI"
-
 try:
-    # Use st.secrets para obter a API key
     api_key = st.secrets.get("GOOGLE_API_KEY")
     if not api_key:
         st.error(
@@ -32,7 +25,7 @@ generation_config = {
     "temperature": 0.75,
     "top_p": 1,
     "top_k": 1,
-    "max_output_tokens": 2048,  # Aumentei para 2048 tokens
+    "max_output_tokens": 2048,
 }
 
 safety_settings = [
@@ -76,19 +69,16 @@ def exibir_mensagem_boas_vindas():
     )
 
 
+
 def coletar_dados_usuario(nome_usuario_ja_coletado=None):
     """Coleta informações básicas e financeiras do usuário."""
-    if nome_usuario_ja_coletado:
-        nome = nome_usuario_ja_coletado
-    else:
-        nome = st.text_input("Olá! Para começarmos, qual o seu nome?").strip()
-        if not nome:
-            st.warning(
-                "Hummmm, você não informou seu nome! Para começarmos nossa jornada, insira o seu nome!."
-            )
-            st.stop()
-        st.write(f"\nPrazer em te conhecer, {nome}! Fico muito feliz em ter você por aqui!")
-        time.sleep(0.5)
+    nome = nome_usuario_ja_coletado or st.text_input("Olá! Para começarmos, qual o seu nome?").strip()
+    if not nome:
+        st.warning(
+            "Hummmm, você não informou seu nome! Para começarmos nossa jornada, insira o seu nome!."
+        )
+        st.stop()
+    st.write(f"\nPrazer em te conhecer, {nome}! Fico muito feliz em ter você por aqui!")
 
     preocupacao = st.text_input(
         f"\n{nome}, vamos começar com o seguinte: Qual sua principal preocupação financeira ou dívida no momento? \n"
@@ -136,6 +126,7 @@ def coletar_dados_usuario(nome_usuario_ja_coletado=None):
     return nome, preocupacao, renda_mensal, despesa_mensal, valor_divida
 
 
+
 def gerar_conselho_financeiro_avancado(
     nome_usuario,
     preocupacao_usuario,
@@ -180,6 +171,7 @@ def gerar_conselho_financeiro_avancado(
             "Por favor, verifique sua conexão com a internet e a configuração da API Key."
         )
         return "Não foi possível gerar um conselho no momento. Tente novamente mais tarde."
+
 
 
 def exibir_conselho(nome_usuario, conselho, contador_consultas):
@@ -270,26 +262,30 @@ def main():
         st.write(
             f"Olá novamente, {nome_usuario_cache}! Vamos continuar em busca de uma vida financeira mais saudável e próspera!!")
 
+    # Usar st.session_state para manter o estado entre as iterações
+    if 'contador_consultas' not in st.session_state:
+        st.session_state.contador_consultas = contador_consultas
+
+    nome_usuario = nome_usuario_cache #garantir que nome_usuario está definido
+
     while True:
         # Passa nome_usuario_cache para coletar_dados_usuario em cada iteração
-        nome_usuario_cache, preocupacao, renda_mensal, despesa_mensal, valor_divida = coletar_dados_usuario(
-            nome_usuario_ja_coletado=nome_usuario_cache
-        )
+        nome_usuario, preocupacao, renda_mensal, despesa_mensal, valor_divida = coletar_dados_usuario(nome_usuario_ja_coletado=nome_usuario)
 
-        contador_consultas += 1
+        st.session_state.contador_consultas += 1
         conselho = gerar_conselho_financeiro_avancado(
-            nome_usuario_cache, preocupacao, renda_mensal, despesa_mensal, valor_divida
+            nome_usuario, preocupacao, renda_mensal, despesa_mensal, valor_divida
         )
-        exibir_conselho(nome_usuario_cache, conselho, contador_consultas)
+        exibir_conselho(nome_usuario, conselho, st.session_state.contador_consultas)
         salvar_progresso(
-            nome_usuario_cache, contador_consultas
+            nome_usuario, st.session_state.contador_consultas
         )  # Salva o progresso do usuário
 
         # --- Verificação de Conquistas ---
-        if contador_consultas in conquistas:
+        if st.session_state.contador_consultas in conquistas:
             st.write("-" * 60)
             st.write(
-                f"🏆 Parabéns, {nome_usuario_cache}! Você desbloqueou a conquista: {conquistas[contador_consultas]} 🏆"
+                f"🏆 Parabéns, {nome_usuario}! Você desbloqueou a conquista: {conquistas[st.session_state.contador_consultas]} 🏆"
             )
             st.write("-" * 60)
 
@@ -300,7 +296,7 @@ def main():
         )
         if continuar == "Não":
             st.write(
-                f"\nObrigado por usar o Mentor Financeiro AI, {nome_usuario_cache}! Volte sempre que precisar de um norte! 🚀"
+                f"\nObrigado por usar o Mentor Financeiro AI, {nome_usuario}! Volte sempre que precisar de um norte! 🚀"
             )
             st.write("Boa sorte no seu desafio da Alura! Você está no caminho certo!")
             break
