@@ -1,10 +1,12 @@
 # 💰 Mentor Financeiro AI - Seu Guru Financeiro Digital com um Toque de Diversão! 🚀
 E aí, galera! 👋 Cansado de planilhas complicadas e de se sentir perdido com as finanças?
-Chegou o Mentor Financeiro AI 3.0! Uma aplicação turbinada com a inteligência da API Gemini do Google e uma interface amigável feita com Streamlit.
+Chegou o Mentor Financeiro AI ! Uma aplicação turbinada com a inteligência da API Gemini do Google e uma interface amigável feita com Streamlit.
 
 Nosso objetivo? Te ajudar a dar um up na sua vida financeira de um jeito leve, interativo e, por que não, divertido! 🎮
 
 A gente sabe que a situação no Brasil não tá fácil pra todo mundo, com muita gente no vermelho e até superendividada. Por isso, criamos essa ferramenta pra ser aquele empurrãozinho inicial rumo a uma vida financeira mais tranquila e saudável. Bora nessa?
+
+Ah e o mais legal!! Eu sei bem pouquinha coisa sobre python, streamlit e desse mundo de programação, então como eu consegui? O código e a conversão para o Streamlit foi possível por conta do Gemini 2.5 Pro!! Demais né ?🤖🤖🤖🤖
 
 # ✨ O que ele faz de Bacana? ✨
 
@@ -90,4 +92,4 @@ E claro, pode abrir uma issue aqui no GitHub! 😉
 
 Bora organizar as finanças e se divertir no processo? Com o Mentor Financeiro AI, o futuro do seu bolso agradece! 🥳
 
-Feito com ❤️ e muito ☕ por [Diógenes de Melo]
+Feito com ❤️ e muito ☕ por [Diógenes de Melo] e com meu braço direito [@Gemini]
