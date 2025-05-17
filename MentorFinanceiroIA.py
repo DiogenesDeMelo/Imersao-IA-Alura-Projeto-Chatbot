@@ -53,7 +53,7 @@ def aplicar_estilo():
         
         /* Estilo para caixas de sucesso */
         .success-box {
-            background-color: #e8f5e9; /* Verde claro para sucesso */
+            background-color: #26ff37; /* Verde claro para sucesso */
             border-left: 5px solid #4caf50; /* Verde */
             padding: 20px;
             border-radius: 8px;
