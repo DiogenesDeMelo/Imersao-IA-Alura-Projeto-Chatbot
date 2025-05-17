@@ -90,7 +90,7 @@ def aplicar_estilo():
         
         /* Estilo para cartões de desafio */
         .challenge-card {
-            background-color: #EFF6FF;
+            background-color: #412ea3;
             border-radius: 10px;
             padding: 20px;
             margin-bottom: 20px;
