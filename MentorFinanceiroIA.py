@@ -22,109 +22,203 @@ st.set_page_config(
 )
 
 # Função para aplicar estilo CSS personalizado
-def aplicar_estilo():
-    """
-    Aplica estilos CSS personalizados à interface Streamlit.
-    Isso melhora a aparência visual e a experiência do usuário.
-    """
-    st.markdown("""
-    <style>
-        /* Estilo geral */
-        .main {
-            background-color: #f0f2f6; /* Cor de fundo mais suave */
-            padding: 20px;
-            font-family: 'Roboto', sans-serif; /* Fonte mais moderna */
-        }
-        
-        /* Estilo para cabeçalhos */
-        h1, h2, h3 {
-            color: #5c1691; /* Roxo principal para títulos */
-        }
-        
-        /* Estilo para caixas de informação */
-        .info-box {
-            background-color: #e8eaf6; /* Azul claro para info */
-            border-left: 5px solid #5c1691; /* Roxo */
-            padding: 20px;
-            border-radius: 8px; /* Bordas mais arredondadas */
-            margin-bottom: 20px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        
-        /* Estilo para caixas de sucesso */
-        .success-box {
-            background-color: #e8f5e9; /* Verde claro para sucesso */
-            border-left: 5px solid #4caf50; /* Verde */
-            padding: 20px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        
-        /* Estilo para caixas de alerta */
-        .warning-box {
-            background-color: #fff3e0; /* Laranja claro para alerta */
-            border-left: 5px solid #ff9800; /* Laranja */
-            padding: 20px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        
-        /* Estilo para barras de progresso */
-        .stProgress > div > div {
-            background-color: #5c1691; /* Roxo */
-        }
-        
-        /* Estilo para botões */
-        .stButton button {
-            background-color: #5c1691; /* Roxo */
-            color: white;
-            border-radius: 20px; /* Botões mais arredondados (pílula) */
-            border: none;
-            padding: 10px 25px; /* Mais padding */
-            font-weight: bold;
-            transition: background-color 0.3s ease; /* Transição suave */
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        
-        .stButton button:hover {
-            background-color: #4a148c; /* Roxo mais escuro no hover */
-        }
+import streamlit as st
 
-        /* Estilo para botões secundários (ex: abandonar desafio) */
-        .stButton button[kind="secondary"] {
-            background-color: #e0e0e0; /* Cinza claro */
-            color: #333333; /* Texto escuro */
-        }
-        .stButton button[kind="secondary"]:hover {
-            background-color: #bdbdbd; /* Cinza mais escuro no hover */
-        }
-        
+# Inicializa o estado do tema na sessão, se ainda não estiver definido
+if 'theme' not in st.session_state:
+    st.session_state.theme = 'light' # Define o tema inicial como 'light'
+
+def aplicar_estilo(theme):
+    """
+    Aplica estilos CSS personalizados à interface Streamlit com suporte a temas.
+    """
+    # Define as cores base para os temas light e dark
+    if theme == 'light':
+        background_color = '#f0f2f6'
+        text_color = '#333333'
+        header_color = '#5c1691' # Roxo principal
+        info_bg = '#e8eaf6' # Azul claro
+        success_bg = '#e8f5e9' # Verde claro
+        warning_bg = '#fff3e0' # Laranja claro
+        card_bg = '#ffffff' # Fundo branco para cards
+        border_color = '#e0e0e0' # Borda sutil
+        button_primary_bg = '#5c1691' # Roxo
+        button_primary_hover_bg = '#4a148c' # Roxo mais escuro
+        button_secondary_bg = '#e0e0e0' # Cinza claro
+        button_secondary_hover_bg = '#bdbdbd' # Cinza mais escuro
+        badge_bg = '#c97ffa' # Lilás
+        box_shadow_color = 'rgba(0,0,0,0.1)'
+    else: # theme == 'dark'
+        background_color = '#1e1e1e' # Fundo escuro
+        text_color = '#ffffff' # Texto branco
+        header_color = '#bb86fc' # Roxo claro para títulos no dark mode
+        info_bg = '#3700b3' # Azul escuro para info
+        success_bg = '#004d40' # Verde escuro para sucesso
+        warning_bg = '#ff6f00' # Laranja escuro para alerta
+        card_bg = '#2c2c2c' # Fundo cinza escuro para cards
+        border_color = '#555555' # Borda mais visível no dark mode
+        button_primary_bg = '#bb86fc' # Roxo claro
+        button_primary_hover_bg = '#985eff' # Roxo um pouco mais claro
+        button_secondary_bg = '#424242' # Cinza escuro
+        button_secondary_hover_bg = '#616161' # Cinza um pouco mais claro
+        badge_bg = '#985eff' # Lilás mais claro
+        box_shadow_color = 'rgba(255,255,255,0.1)' # Sombra clara no dark mode
+
+
+    st.markdown(f"""
+    <style>
+        /* Importa a fonte Roboto */
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+        /* Estilo geral aplicado ao corpo e ao contêiner principal do Streamlit */
+        body {{
+            color: {text_color};
+            background-color: {background_color};
+            font-family: 'Roboto', sans-serif;
+        }}
+        .main {{
+            background-color: {background_color};
+            padding: 20px;
+            color: {text_color}; /* Garante que o texto dentro de .main também tenha a cor correta */
+        }}
+
+        /* Estilo para cabeçalhos */
+        h1, h2, h3 {{
+            color: {header_color};
+        }}
+
+        /* Estilo para caixas de informação */
+        .info-box {{
+            background-color: {info_bg};
+            border-left: 5px solid {header_color}; /* Usa a cor principal do tema */
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px {box_shadow_color};
+            color: {text_color}; /* Garante que o texto dentro da caixa tenha a cor correta */
+        }}
+
+        /* Estilo para caixas de sucesso */
+        .success-box {{
+            background-color: {success_bg};
+            border-left: 5px solid #4caf50; /* Verde fixo, ou pode variar por tema */
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px {box_shadow_color};
+            color: {text_color};
+        }}
+
+        /* Estilo para caixas de alerta */
+        .warning-box {{
+            background-color: {warning_bg};
+            border-left: 5px solid #ff9800; /* Laranja fixo, ou pode variar por tema */
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px {box_shadow_color};
+            color: {text_color};
+        }}
+
+        /* Estilo para barras de progresso */
+        .stProgress > div > div {{
+            background-color: {button_primary_bg}; /* Usa a cor do botão primário */
+        }}
+
+        /* Estilo para botões primários */
+        .stButton button {{
+            background-color: {button_primary_bg};
+            color: white; /* Cor do texto fixa para botões primários */
+            border-radius: 20px;
+            border: none;
+            padding: 10px 25px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 2px 4px {box_shadow_color};
+        }}
+
+        .stButton button:hover {{
+            background-color: {button_primary_hover_bg};
+        }}
+
+        /* Estilo para botões secundários */
+        /* Nota: Streamlit usa o atributo data-testid="stButton" para botões,
+           e o 'kind' é uma propriedade que pode ser difícil de estilizar diretamente
+           com CSS puro injetado. A abordagem abaixo tenta segmentar, mas pode
+           não ser 100% robusta para todos os casos de "secondary" button
+           nativos do Streamlit. Uma alternativa seria usar st.markdown para criar
+           botões com classes customizadas. */
+        .stButton button[kind="secondary"] {{
+             background-color: {button_secondary_bg};
+             color: {text_color}; /* Cor do texto base do tema */
+             border: 1px solid {border_color}; /* Adiciona uma borda sutil */
+             box-shadow: none; /* Remove sombra para diferenciar */
+        }}
+        .stButton button[kind="secondary"]:hover {{
+             background-color: {button_secondary_hover_bg};
+             color: {text_color};
+        }}
+
+
         /* Estilo para cartões de desafio */
-        .challenge-card {
-            background-color: #ffffff; /* Fundo branco para cards */
-            border: 1px solid #e0e0e0; /* Borda sutil */
+        .challenge-card {{
+            background-color: {card_bg};
+            border: 1px solid {border_color};
             border-radius: 10px;
             padding: 20px;
             margin-bottom: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra mais pronunciada */
-        }
-        
+            box-shadow: 0 4px 8px {box_shadow_color};
+            color: {text_color};
+        }}
+
         /* Estilo para medalhas e conquistas */
-        .badge {
+        .badge {{
             display: inline-block;
-            background-color: #c97ffa; /* Lilás para badges */
-            color: white;
+            background-color: {badge_bg};
+            color: white; /* Cor do texto fixa para badges */
             border-radius: 20px;
             padding: 5px 15px;
             margin-right: 10px;
             font-weight: bold;
             font-size: 0.9em;
-        }
+        }}
+
+        /* Estilo para o toggle de tema (opcional, pode ajustar a aparência) */
+        .stCheckbox label {{
+            color: {text_color}; /* Garante que o texto do label do checkbox tenha a cor correta */
+        }}
+
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     """, unsafe_allow_html=True)
+
+# --- Lógica da Aplicação Streamlit ---
+
+# Aplica o estilo com base no tema atual da sessão
+aplicar_estilo(st.session_state.theme)
+
+# Adiciona um checkbox para alternar o tema
+# Quando o checkbox muda, atualiza o estado da sessão e força um rerun
+if st.checkbox("Modo Escuro", value=(st.session_state.theme == 'dark')):
+    st.session_state.theme = 'dark'
+else:
+    st.session_state.theme = 'light'
+
+
+st.title("Exemplo de Tema Dinâmico no Streamlit")
+
+st.write("Este é um texto de exemplo para demonstrar o tema.")
+
+# Exemplo de como usar uma das classes personalizadas com o tema
+st.markdown(f'<div class="info-box">Este é um exemplo de um box de informação usando a classe personalizada no tema {st.session_state.theme}.</div>', unsafe_allow_html=True)
+
+st.markdown(f'<div class="challenge-card"><h3>Cartão de Desafio</h3><p>Descrição do desafio.</p></div>', unsafe_allow_html=True)
+
+st.button("Botão Primário")
+st.button("Botão Secundário", kind="secondary")
+
+st.progress(0.7)
+
+st.markdown('<span class="badge">Conquista!</span>', unsafe_allow_html=True)
 
 # Aplicar estilo personalizado
 aplicar_estilo()
