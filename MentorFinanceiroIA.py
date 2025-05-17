@@ -274,91 +274,76 @@ def adicionar_conquista(conquista):
         st.success(f"🏆 Nova conquista desbloqueada: {conquista}")
 
 def gerar_desafio_aleatorio():
+    """
+    Gera um desafio financeiro aleatório para o usuário.
+    
+    Returns:
+        dict: Dicionário contendo informações do desafio
+    """
     desafios = [
         {
-            "titulo": "Desafio da Caminhada",
-            "descricao": "Caminhe 5 km por dia durante 7 dias.",
+            "titulo": "Semana Sem Delivery",
+            "descricao": "Evite pedir comida por delivery por uma semana inteira.",
+            "dificuldade": "Médio",
+            "pontos": 30,
+            "duracao_dias": 7
+        },
+        {
+            "titulo": "Dia de Registro Total",
+            "descricao": "Registre absolutamente todos os seus gastos por um dia inteiro, até os centavos.",
             "dificuldade": "Fácil",
-            "pontos": 10,
-            "duracao_dias": 7,
-        },
-        {
-            "titulo": "Desafio da Alimentação Saudável",
-            "descricao": "Coma 3 porções de frutas e verduras por dia durante 7 dias.",
-            "dificuldade": "Médio",
             "pontos": 15,
-            "duracao_dias": 7,
+            "duracao_dias": 1
         },
         {
-            "titulo": "Desafio da Leitura",
-            "descricao": "Leia 30 minutos por dia durante 7 dias.",
+            "titulo": "Economia de R$50",
+            "descricao": "Encontre formas de economizar R$50 esta semana em gastos que você normalmente faria.",
             "dificuldade": "Médio",
-            "pontos": 15,
-            "duracao_dias": 7,
+            "pontos": 25,
+            "duracao_dias": 7
         },
         {
-            "titulo": "Desafio do Sono",
-            "descricao": "Durma 8 horas por noite durante 7 dias.",
-            "dificuldade": "Difícil",
+            "titulo": "Pesquisa de Preços",
+            "descricao": "Compare preços de 5 produtos que você compra regularmente em pelo menos 3 estabelecimentos diferentes.",
+            "dificuldade": "Médio",
             "pontos": 20,
-            "duracao_dias": 7,
+            "duracao_dias": 3
         },
         {
-            "titulo": "Desafio da Meditação",
-            "descricao": "Medite 10 minutos por dia durante 7 dias.",
+            "titulo": "Dia Sem Gastos",
+            "descricao": "Passe um dia inteiro sem gastar absolutamente nada.",
             "dificuldade": "Difícil",
-            "pontos": 20,
-            "duracao_dias": 7,
-        },
+            "pontos": 40,
+            "duracao_dias": 1
+        }
     ]
-    return random.choice(desafios)
+    
+    # Selecionar um desafio aleatório
+    desafio = random.choice(desafios)
+    
+    # Adicionar data de início e fim
+    data_inicio = datetime.now()
+    data_fim = data_inicio + timedelta(days=desafio["duracao_dias"])
+    
+    desafio["data_inicio"] = data_inicio
+    desafio["data_fim"] = data_fim
+    desafio["concluido"] = False
+    
+    return desafio
 
-# Função para adicionar um desafio à lista de desafios ativos do usuário
 def aceitar_desafio(desafio):
     """
     Adiciona um desafio à lista de desafios ativos do usuário.
-
+    
     Args:
         desafio (dict): Dicionário contendo informações do desafio
     """
     # Verificar se o desafio já está ativo
-    if "desafios_ativos" not in st.session_state:
-        st.session_state.desafios_ativos = []
-    
     titulos_ativos = [d["titulo"] for d in st.session_state.desafios_ativos]
     if desafio["titulo"] not in titulos_ativos:
         st.session_state.desafios_ativos.append(desafio)
         st.success(f"🎯 Desafio aceito: {desafio['titulo']}")
-        #adicionar_pontos(5, "Aceitou um novo desafio") #removi a chamada a função adicionar pontos, pois não existe.
-    else:
-        st.warning("Desafio já aceito")
-    st.session_state.desafio_atual = {} #limpa o desafio atual para não exibir o mesmo desafio novamente
-
-# Inicializa o estado da sessão para armazenar o desafio atual
-if "desafio_atual" not in st.session_state:
-    st.session_state.desafio_atual = {}
-
-# Botão para gerar um novo desafio
-if st.button("Gerar Novo Desafio", key="btn_novo_desafio"):
-    desafio = gerar_desafio_aleatorio()
-    st.session_state.desafio_atual = desafio  # Armazena o desafio no estado da sessão
-
-# Exibe o desafio atual, se existir
-if st.session_state.desafio_atual:
-    desafio = st.session_state.desafio_atual
-    st.markdown(f"""
-    <div class="challenge-card">
-        <h3>{desafio['titulo']}</h3>
-        <p>{desafio['descricao']}</p>
-        <p><strong>Dificuldade:</strong> {desafio['dificuldade']} | <strong>Pontos:</strong> {desafio['pontos']}</p>
-        <p><strong>Duração:</strong> {desafio['duracao_dias']} dias</p>
-    </div>
-    """, unsafe_allow_html=True)
-
-    # Botão para aceitar desafio
-    if st.button("Aceitar Desafio", key="btn_aceitar"):
-        aceitar_desafio(desafio)
-        st.rerun()  # Força o Streamlit a atualizar a tela
+        adicionar_pontos(5, "Aceitou um novo desafio")
 
 def concluir_desafio(indice):
     """
