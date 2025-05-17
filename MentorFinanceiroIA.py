@@ -33,7 +33,7 @@ def aplicar_estilo():
     <style>
         /* Estilo geral */
         .main {
-            background-color: #7cf27c;
+            background-color: #5c1691;
             padding: 20px;
         }
         
@@ -44,7 +44,7 @@ def aplicar_estilo():
         
         /* Estilo para caixas de informação */
         .info-box {
-            background-color: #7cf27c;
+            background-color: #5c1691;
             border-left: 5px solid #81c784;
             padding: 20px;
             border-radius: 5px;
@@ -53,7 +53,7 @@ def aplicar_estilo():
         
         /* Estilo para caixas de sucesso */
         .success-box {
-            background-color: #c5ff82;
+            background-color: #d67322;
             border-left: 5px solid #4caf50;
             padding: 20px;
             border-radius: 5px;
@@ -76,7 +76,7 @@ def aplicar_estilo():
         
         /* Estilo para botões */
         .stButton button {
-            background-color: #81c784;
+            background-color: #5c1691;
             color: white;
             border-radius: 5px;
             border: none;
@@ -90,7 +90,7 @@ def aplicar_estilo():
         
         /* Estilo para cartões de desafio */
         .challenge-card {
-            background-color: #E8F5E9;
+            background-color: #420773;
             border-radius: 10px;
             padding: 20px;
             margin-bottom: 20px;
