@@ -43,7 +43,7 @@ def aplicar_estilo():
         
         /* Estilo para caixas de informação */
         .info-box {
-            background-color: #324ffa; /* Azul claro para info */
+            background-color: #7b32fa; /* Azul claro para info */
             border-left: 5px solid #5c1691; /* Roxo */
             padding: 20px;
             border-radius: 8px; /* Bordas mais arredondadas */
