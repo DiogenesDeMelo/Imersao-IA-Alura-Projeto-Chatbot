@@ -63,7 +63,7 @@ def aplicar_estilo():
         
         /* Estilo para caixas de alerta */
         .warning-box {
-            background-color: #030202; /* Laranja claro para alerta */
+            background-color: #050505; /* Laranja claro para alerta */
             border-left: 5px solid #ff9800; /* Laranja */
             padding: 20px;
             border-radius: 8px;
@@ -656,7 +656,7 @@ def pagina_dashboard():
     st.markdown("### Dica Personalizada do Mentor AI")
     with st.spinner("Gerando sua dica personalizada..."):
         dica = gerar_dica_financeira_personalizada()
-    st.markdown(f"<div class='info-box' style='background-color: #fff9c4; border-left-color: #fbc02d;'>💡 <strong>{dica}</strong></div>", unsafe_allow_html=True)
+    st.markdown(f"<div class='info-box' style='background-color: #ff5e29; border-left-color: #fbc02d;'>💡 <strong>{dica}</strong></div>", unsafe_allow_html=True)
 
     if st.session_state.desafios_ativos:
         st.markdown("### Seus Desafios Ativos")
