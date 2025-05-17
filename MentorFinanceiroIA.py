@@ -31,7 +31,7 @@ def aplicar_estilo():
     <style>
         /* Estilo geral */
         .main {
-            background-color: #f0f2f6; /* Cor de fundo mais suave */
+            background-color: #b447fc; /* Cor de fundo mais suave */
             padding: 20px;
             font-family: 'Roboto', sans-serif; /* Fonte mais moderna */
         }
