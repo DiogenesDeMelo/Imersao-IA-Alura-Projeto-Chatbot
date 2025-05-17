@@ -1158,8 +1158,8 @@ def pagina_consultor():
     
     st.markdown("""
     <div class="info-box">
-        <p>Eu fui criado com o propósito de ajudar pessoas em situação de endividamento e darem o primeiro passo na jornada em busca uma vida financeira saudável<p>
-        <p>Compartilhe suas preocupações financeiras, como dúvidas, problemas com dívidas, dificuldade de organização financeira  e receba um planejemento estratégico para melhorar sua saúde financeira.</p>
+        <p>✨ Eu fui criado com o propósito de ajudar pessoas em situação de endividamento e darem o primeiro passo na jornada em busca uma vida financeira saudável!<p>
+        <p>💡 Compartilhe suas preocupações financeiras, como dúvidas, problemas com dívidas, dificuldade de organização financeira  e receba um planejemento estratégico para melhorar sua saúde financeira.</p>
     </div>
     """, unsafe_allow_html=True)
     
