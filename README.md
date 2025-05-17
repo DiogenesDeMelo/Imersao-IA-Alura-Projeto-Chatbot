@@ -1,4 +1,4 @@
-# 💰 Mentor Financeiro AI 3.0 - Seu Guru Financeiro Digital com um Toque de Diversão! 🚀
+# 💰 Mentor Financeiro AI - Seu Guru Financeiro Digital com um Toque de Diversão! 🚀
 E aí, galera! 👋 Cansado de planilhas complicadas e de se sentir perdido com as finanças?
 Chegou o Mentor Financeiro AI 3.0! Uma aplicação turbinada com a inteligência da API Gemini do Google e uma interface amigável feita com Streamlit.
 
