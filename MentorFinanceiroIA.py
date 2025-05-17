@@ -168,7 +168,7 @@ def configurar_modelo_gemini():
         "temperature": 0.75,  # Controla a criatividade (valores mais altos = mais criativo)
         "top_p": 1,
         "top_k": 1,
-        "max_output_tokens": 800,  # Aumentado para conselhos mais detalhados
+        "max_output_tokens": 3000,  # Aumentado para conselhos mais detalhados
     }
     
     # Configurações de segurança
@@ -182,7 +182,7 @@ def configurar_modelo_gemini():
     try:
         # Inicializar o modelo Gemini
         model = genai.GenerativeModel(
-            model_name="gemini-1.5-flash-latest",
+            model_name="gemini-2.0-flash",
             generation_config=generation_config,
             safety_settings=safety_settings
         )
@@ -774,11 +774,11 @@ def gerar_conselho_financeiro(preocupacao):
         
         # Instruções para o formato do conselho
         prompt_parts.extend([
-            "\nAja como um consultor financeiro experiente, empático, motivador e muito prático.",
+            "\nVocê é um consultor financeiro experiente, empático, motivador e detalhista.",
             "Preciso de ajuda para lidar com essa situação.",
             "Forneça para mim, em português do Brasil:",
             "1. Uma mensagem curta de encorajamento e validação dos meus sentimentos (1-2 frases).",
-            "2. Um pequeno plano de ação com 2 a 3 passos SIMPLES, PRÁTICOS e ACIONÁVEIS que posso começar a implementar HOJE ou esta semana para enfrentar essa preocupação.",
+            "2. Um planjamento financeiro estruturado, verificando a renda, despesas, dívidas e traçando um plano de ação detalhado para vencer isso, se necessário, dando opções de renda extra para aumentar a renda caso seja insuficiemte.",
             "3. Uma dica extra ou uma reflexão positiva curta (1 frase).",
             "Seja claro, direto e use uma linguagem acessível. Evite jargões financeiros complexos."
         ])
