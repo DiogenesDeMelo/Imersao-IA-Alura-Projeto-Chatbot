@@ -72,26 +72,28 @@ def exibir_mensagem_boas_vindas():
 
 def coletar_dados_usuario(nome_usuario_ja_coletado=None):
     """Coleta informações básicas e financeiras do usuário."""
-    nome = nome_usuario_ja_coletado or st.text_input("Olá! Para começarmos, qual o seu nome?").strip()
+    nome = nome_usuario_ja_coletado or st.session_state.nome if nome_usuario_ja_coletado or 'nome' in st.session_state else st.text_input("Olá! Para começarmos, qual o seu nome?").strip()
     if not nome:
         st.warning(
             "Hummmm, você não informou seu nome! Para começarmos nossa jornada, insira o seu nome!."
         )
         st.stop()
     st.write(f"\nPrazer em te conhecer, {nome}! Fico muito feliz em ter você por aqui!")
+    st.session_state.nome = nome  # Salva o nome no session_state
 
     preocupacao = st.text_input(
         f"\n{nome}, vamos começar com o seguinte: Qual sua principal preocupação financeira ou dívida no momento? \n"
-        "(Ex: 'cartão de crédito com R$2000', 'não consigo guardar dinheiro', 'quero renegociar meu financiamento')"
+        "(Ex: 'cartão de crédito com R$2000', 'não consigo guardar dinheiro', 'quero renegociar meu financiamento')", key="preocupacao"
     ).strip()
     if not preocupacao:
         st.warning(
             "Não fique acanhado, conta comigo nesse processo! Agora, descreva sua preocupação para que eu possa te ajudar."
         )
         st.stop()
+    st.session_state.preocupacao = preocupacao
 
     renda_mensal_str = st.text_input(
-        f"\nPara te ajudar melhor, qual sua renda mensal aproximada? (Pressione Enter se preferir não informar ou sua preocupação não precise dessa informação): R$ "
+        f"\nPara te ajudar melhor, qual sua renda mensal aproximada? (Pressione Enter se preferir não informar ou sua preocupação não precise dessa informação): R$ ", key="renda_mensal"
     ).strip()
     renda_mensal = None
     if renda_mensal_str:
@@ -100,9 +102,10 @@ def coletar_dados_usuario(nome_usuario_ja_coletado=None):
         except ValueError:
             st.error("Valor de renda inválido, seguirei sem essa informação.")
             renda_mensal = None
+    st.session_state.renda_mensal = renda_mensal
 
     despesa_mensal_str = st.text_input(
-        f"\nSe preferir, Poderia informar sua despesa mensal total estimada? (Pressione Enter se preferir não informar ou sua preocupação não precise dessa informação): R$ "
+        f"\nSe preferir, Poderia informar sua despesa mensal total estimada? (Pressione Enter se preferir não informar ou sua preocupação não precise dessa informação): R$ ", key="despesa_mensal"
     ).strip()
     despesa_mensal = None
     if despesa_mensal_str:
@@ -111,9 +114,10 @@ def coletar_dados_usuario(nome_usuario_ja_coletado=None):
         except ValueError:
             st.error("Valor de despesa inválido, seguirei sem essa informação.")
             despesa_mensal = None
+    st.session_state.despesa_mensal = despesa_mensal
 
     valor_divida_str = st.text_input(
-        f"\nSe sua preocupação é uma dívida específica, ou se você tem um montate total de dívidas, qual o valor aproximado dela(s)? (Pressione Enter se não aplicável ou não quiser informar): R$ "
+        f"\nSe sua preocupação é uma dívida específica, ou se você tem um montate total de dívidas, qual o valor aproximado dela(s)? (Pressione Enter se não aplicável ou não quiser informar): R$ ", key="valor_divida"
     ).strip()
     valor_divida = None
     if valor_divida_str:
@@ -122,7 +126,7 @@ def coletar_dados_usuario(nome_usuario_ja_coletado=None):
         except ValueError:
             st.error("Valor de dívida inválido, seguirei sem essa informação.")
             valor_divida = None
-
+    st.session_state.valor_divida = valor_divida
     return nome, preocupacao, renda_mensal, despesa_mensal, valor_divida
 
 
@@ -265,8 +269,10 @@ def main():
     # Usar st.session_state para manter o estado entre as iterações
     if 'contador_consultas' not in st.session_state:
         st.session_state.contador_consultas = contador_consultas
+    if 'nome' not in st.session_state:
+        st.session_state.nome = nome_usuario_cache
+    nome_usuario = st.session_state.nome #garantir que nome_usuario está definido
 
-    nome_usuario = nome_usuario_cache #garantir que nome_usuario está definido
 
     while True:
         # Passa nome_usuario_cache para coletar_dados_usuario em cada iteração
@@ -292,7 +298,7 @@ def main():
         time.sleep(1)
         continuar = st.radio(
             "\nDeseja fazer outra consulta ou registrar outra preocupação?",
-            ["Sim", "Não"],
+            ["Sim", "Não"], key="continuar"
         )
         if continuar == "Não":
             st.write(
