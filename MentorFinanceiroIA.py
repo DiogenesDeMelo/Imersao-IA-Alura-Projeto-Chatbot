@@ -103,8 +103,8 @@ def aplicar_estilo():
         
         /* Estilo para cartões de desafio */
         .challenge-card {
-            background-color: #ffffff; /* Fundo branco para cards */
-            border: 1px solid #e0e0e0; /* Borda sutil */
+            background-color: #890af7; /* Fundo branco para cards */
+            border: 1px solid #a139fa; /* Borda sutil */
             border-radius: 10px;
             padding: 20px;
             margin-bottom: 20px;
