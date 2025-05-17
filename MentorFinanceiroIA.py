@@ -1,5 +1,5 @@
 """
-# Mentor Financeiro AI 3.0
+# Mentor Financeiro AI
 # Aplicação de assistência financeira com interface Streamlit e recursos de gamificação
 # Desenvolvido para fins educacionais
 """
@@ -17,7 +17,7 @@ from datetime import datetime, timedelta  # Para manipulação de datas
 
 # Configuração da página Streamlit
 st.set_page_config(
-    page_title="Mentor Financeiro AI 3.0",
+    page_title="Mentor Financeiro AI",
     page_icon="💰",
     layout="wide",
     initial_sidebar_state="expanded"
@@ -33,19 +33,19 @@ def aplicar_estilo():
     <style>
         /* Estilo geral */
         .main {
-            background-color: #f5f7f9;
+            background-color: #f0f4f0;
             padding: 20px;
         }
         
         /* Estilo para cabeçalhos */
         h1, h2, h3 {
-            color: #1E3A8A;
+            color: #386641;
         }
         
         /* Estilo para caixas de informação */
         .info-box {
-            background-color: #EFF6FF;
-            border-left: 5px solid #3B82F6;
+            background-color: #e8f5e9;
+            border-left: 5px solid #81c784;
             padding: 20px;
             border-radius: 5px;
             margin-bottom: 20px;
@@ -53,8 +53,8 @@ def aplicar_estilo():
         
         /* Estilo para caixas de sucesso */
         .success-box {
-            background-color: #ECFDF5;
-            border-left: 5px solid #10B981;
+            background-color: #f1f8e9;
+            border-left: 5px solid #4caf50;
             padding: 20px;
             border-radius: 5px;
             margin-bottom: 20px;
@@ -62,8 +62,8 @@ def aplicar_estilo():
         
         /* Estilo para caixas de alerta */
         .warning-box {
-            background-color: #FFFBEB;
-            border-left: 5px solid #F59E0B;
+            background-color: #fffde7;
+            border-left: 5px solid #fbc02d;
             padding: 20px;
             border-radius: 5px;
             margin-bottom: 20px;
@@ -71,12 +71,12 @@ def aplicar_estilo():
         
         /* Estilo para barras de progresso */
         .stProgress > div > div {
-            background-color: #3B82F6;
+            background-color: #81c784;
         }
         
         /* Estilo para botões */
         .stButton button {
-            background-color: #3B82F6;
+            background-color: #81c784;
             color: white;
             border-radius: 5px;
             border: none;
@@ -85,12 +85,12 @@ def aplicar_estilo():
         }
         
         .stButton button:hover {
-            background-color: #1E3A8A;
+            background-color: #386641;
         }
         
         /* Estilo para cartões de desafio */
         .challenge-card {
-            background-color: #EFF6FF;
+            background-color: #E8F5E9;
             border-radius: 10px;
             padding: 20px;
             margin-bottom: 20px;
@@ -100,7 +100,7 @@ def aplicar_estilo():
         /* Estilo para medalhas e conquistas */
         .badge {
             display: inline-block;
-            background-color: #3B82F6;
+            background-color: #81c784;
             color: white;
             border-radius: 20px;
             padding: 5px 15px;
@@ -168,7 +168,7 @@ def configurar_modelo_gemini():
         "temperature": 0.75,  # Controla a criatividade (valores mais altos = mais criativo)
         "top_p": 1,
         "top_k": 1,
-        "max_output_tokens": 800,  # Aumentado para conselhos mais detalhados
+        "max_output_tokens": 8000,  # Aumentado para conselhos mais detalhados
     }
     
     # Configurações de segurança
@@ -182,7 +182,7 @@ def configurar_modelo_gemini():
     try:
         # Inicializar o modelo Gemini
         model = genai.GenerativeModel(
-            model_name="gemini-1.5-flash-latest",
+            model_name="gemini-2.0-flash",
             generation_config=generation_config,
             safety_settings=safety_settings
         )
@@ -774,12 +774,14 @@ def gerar_conselho_financeiro(preocupacao):
         
         # Instruções para o formato do conselho
         prompt_parts.extend([
-            "\nAja como um consultor financeiro experiente, empático, motivador e muito prático.",
+            "\nVocê é um consultor financeiro experiente, empático, motivador e bem detalhista.",
             "Preciso de ajuda para lidar com essa situação.",
             "Forneça para mim, em português do Brasil:",
             "1. Uma mensagem curta de encorajamento e validação dos meus sentimentos (1-2 frases).",
-            "2. Um pequeno plano de ação com 2 a 3 passos SIMPLES, PRÁTICOS e ACIONÁVEIS que posso começar a implementar HOJE ou esta semana para enfrentar essa preocupação.",
-            "3. Uma dica extra ou uma reflexão positiva curta (1 frase).",
+            "2. Um Planejamento Financeira detalhado, com base na minha renda, despesa e dívidas, de forma a traçar um plano objetivo e alcançável.",
+            "3. Esse planejamento deverá conter valores, que demonstre como e quando eu posso atingir o objetivo de melhorar a saúde financeira.",
+            "4. Caso verifique que com a minha renda atual não seja possível alcançar o objetivo, sugerir opções de renda extra para que a renda seja maximizada e então, conseguir quitar dívidas, ou metas financeiras.",
+            "5. Uma dica extra ou uma reflexão positiva curta (1 frase).",
             "Seja claro, direto e use uma linguagem acessível. Evite jargões financeiros complexos."
         ])
         
@@ -856,8 +858,8 @@ def exibir_cabecalho():
     col1, col2 = st.columns([3, 1])
     
     with col1:
-        st.title("🌟 Mentor Financeiro AI 3.0")
-        st.markdown("### Seu assistente para trilhar o caminho da saúde financeira")
+        st.title("🌟 Mentor Financeiro AI")
+        st.markdown("### Seu assistente para trilhar o caminho da saúde financeira!")
     
     with col2:
         if st.session_state.nome_usuario:
@@ -934,9 +936,10 @@ def exibir_barra_lateral():
     st.sidebar.markdown("---")
     st.sidebar.markdown("### Sobre")
     st.sidebar.info(
-        "Mentor Financeiro AI 3.0\n\n"
+        "Mentor Financeiro AI\n\n"
         "Desenvolvido para fins educacionais\n\n"
         "Utiliza a API Gemini do Google para gerar conselhos financeiros personalizados."
+        "O Conteúdo aqui gerado utiliza-se de Inteligência Artificial, que pode cometer erros. Sempre procure ajuda profissional especializada!"
     )
 
 # --- Páginas da Aplicação ---
@@ -944,14 +947,15 @@ def pagina_boas_vindas():
     """
     Exibe a página de boas-vindas e coleta informações iniciais do usuário.
     """
-    st.markdown("## 👋 Bem-vindo ao Mentor Financeiro AI!")
+    st.markdown("## 👋 Bem-vindo ao Mentor Financeiro!")
     
     st.markdown("""
     <div class="info-box">
         <h3>O que é o Mentor Financeiro AI?</h3>
-        <p>Um assistente inteligente que utiliza IA para ajudar você a melhorar sua saúde financeira, 
-        oferecendo conselhos personalizados, diagnósticos financeiros e desafios para desenvolver 
+        <p>Eu fui desenvolvido como um assistente inteligente que utiliza IA para ajudar você a melhorar sua saúde financeira, 
+        oferecendo planejamentos financeiros personalizados, diagnósticos financeiros e desafios para desenvolver 
         hábitos financeiros saudáveis.</p>
+        <p>Minha missão é ajudar pessoas em estado de endividamento a darem os primeiros passos para um vida financeira leve e tranquila!</p>        
     </div>
     """, unsafe_allow_html=True)
     
