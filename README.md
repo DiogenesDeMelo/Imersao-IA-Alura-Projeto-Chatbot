@@ -4,7 +4,7 @@ Chegou o Mentor Financeiro AI ! Uma aplicação turbinada com a inteligência da
 
 Nosso objetivo? Te ajudar a dar um up na sua vida financeira de um jeito leve, interativo e, por que não, divertido!? 🎮
 
-A gente sabe que a situação no Brasil não tá fácil pra todo mundo, com muita gente no vermelho e até superendividada. Por isso, criamos essa ferramenta pra ser aquele empurrãozinho inicial rumo a uma vida financeira mais tranquila e saudável. Bora nessa?
+A gente sabe que a situação no Brasil não tá fácil pra todo mundo, com muita gente no vermelho e até superendividada. Por isso, criei essa ferramenta pra ser aquele empurrãozinho inicial rumo a uma vida financeira mais tranquila e saudável. Bora nessa?
 
 Ah e o mais legal!! Eu sei bem pouquinha coisa sobre python, streamlit e desse mundo de programação, então como eu consegui? O código e a conversão para o Streamlit foi possível por conta do Gemini 2.5 Pro!! Demais né ?🤖🤖🤖🤖
 
