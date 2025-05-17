@@ -857,7 +857,7 @@ def exibir_cabecalho():
     
     with col1:
         st.title("🌟 Mentor Financeiro AI 3.0")
-        st.markdown("### Seu assistente para trilhar o caminho da saúde financeira")
+        st.markdown("### Seu mentor para trilhar o caminho da saúde financeira!")
     
     with col2:
         if st.session_state.nome_usuario:
@@ -1158,6 +1158,7 @@ def pagina_consultor():
     
     st.markdown("""
     <div class="info-box">
+        <p>Eu fui criado com o propósito de ajudar pessoas em situação de endividamento e darem o primeiro passo na jornada em busca uma vida financeira saudável<p>
         <p>Compartilhe suas preocupações financeiras, como dúvidas, problemas com dívidas, dificuldade de organização financeira  e receba um planejemento estratégico para melhorar sua saúde financeira.</p>
     </div>
     """, unsafe_allow_html=True)
