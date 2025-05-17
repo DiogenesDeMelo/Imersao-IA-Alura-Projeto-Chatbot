@@ -35,7 +35,7 @@ Uma Chave da API do Google Generative AI (Gemini) - o cérebro da nossa IA! 🧠
 # 🚀 Como faço pra usar AGORA?
 Mais fácil que pedir pizza! 🍕
 
-Acesse o link mágico do Streamlit Cloud e comece a transformar sua vida financeira: ➡️ [https://projetoalura-mentorfinaneiroia-cmnfnq6vco7l8pfruq8pu6.streamlit.app/] ⬅️ 
+Acesse o link mágico do Streamlit Cloud e comece a transformar sua vida financeira: ➡️ [https://mentorfinanceiroia.streamlit.app/] ⬅️ 
 
 # 🤓 Por Dentro da Matrix (do Bem!) - Entendendo o Código
 Se você é dos nossos e curte um código (oi, Python lovers!), vai gostar de saber que ele foi estruturado de forma didática e cheio de comentários pra facilitar o aprendizado. Tipo um mapa do tesouro!
