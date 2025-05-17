@@ -656,7 +656,7 @@ def pagina_dashboard():
     st.markdown("### Dica Personalizada do Mentor AI")
     with st.spinner("Gerando sua dica personalizada..."):
         dica = gerar_dica_financeira_personalizada()
-    st.markdown(f"<div class='info-box' style='background-color: #ff5e29; border-left-color: #fbc02d;'>💡 <strong>{dica}</strong></div>", unsafe_allow_html=True)
+    st.markdown(f"<div class='info-box' style='background-color: #8629ff; border-left-color: #fbc02d;'>💡 <strong>{dica}</strong></div>", unsafe_allow_html=True)
 
     if st.session_state.desafios_ativos:
         st.markdown("### Seus Desafios Ativos")
