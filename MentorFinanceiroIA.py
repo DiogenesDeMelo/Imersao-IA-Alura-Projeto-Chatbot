@@ -85,7 +85,7 @@ def aplicar_estilo():
         }
         
         .stButton button:hover {
-            background-color: #386641;
+            background-color: #c985ed;
         }
         
         /* Estilo para cartões de desafio */
@@ -100,7 +100,7 @@ def aplicar_estilo():
         /* Estilo para medalhas e conquistas */
         .badge {
             display: inline-block;
-            background-color: #81c784;
+            background-color: #c97ffa;
             color: white;
             border-radius: 20px;
             padding: 5px 15px;
@@ -938,7 +938,7 @@ def exibir_barra_lateral():
     st.sidebar.info(
         "Mentor Financeiro AI\n\n"
         "Desenvolvido para fins educacionais\n\n"
-        "Utiliza a API Gemini do Google para gerar conselhos financeiros personalizados."
+        "Utiliza a API Gemini do Google para gerar planejamentos financeiros personalizados."
         "O Conteúdo aqui gerado utiliza-se de Inteligência Artificial, que pode cometer erros. Sempre procure ajuda profissional especializada!"
     )
 
@@ -1162,12 +1162,12 @@ def pagina_consultor():
     
     st.markdown("""
     <div class="info-box">
-        <p>Compartilhe suas preocupações financeiras e receba conselhos personalizados do nosso assistente virtual.</p>
+        <p>Compartilhe suas preocupações financeiras e receba planejamentos personalizados do nosso assistente virtual.</p>
     </div>
     """, unsafe_allow_html=True)
     
     # Abas para diferentes funcionalidades
-    tab1, tab2, tab3 = st.tabs(["Conselho Financeiro", "Simulador de Negociação", "Glossário Financeiro"])
+    tab1, tab2, tab3 = st.tabs(["Planejamento Financeiro", "Simulador de Negociação", "Glossário Financeiro"])
     
     # Aba de Conselho Financeiro
     with tab1:
