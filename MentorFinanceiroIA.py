@@ -44,7 +44,7 @@ def aplicar_estilo():
         
         /* Estilo para caixas de informação */
         .info-box {
-            background-color: #EFF6FF;
+            background-color: #185fa5;
             border-left: 5px solid #3B82F6;
             padding: 20px;
             border-radius: 5px;
