@@ -168,7 +168,7 @@ def configurar_modelo_gemini():
         "temperature": 0.75,  # Controla a criatividade (valores mais altos = mais criativo)
         "top_p": 1,
         "top_k": 1,
-        "max_output_tokens": 8000,  # Aumentado para conselhos mais detalhados
+        "max_output_tokens": 8000,  # Aumentado para planejamentos mais detalhados
     }
     
     # Configurações de segurança
@@ -739,19 +739,19 @@ def gerar_dica_financeira_personalizada():
     except Exception as e:
         return f"Erro ao gerar dica personalizada: {e}"
 
-def gerar_conselho_financeiro(preocupacao):
+def gerar_planejamento_financeiro(preocupacao):
     """
-    Gera um conselho financeiro personalizado com base na preocupação do usuário.
+    Gera um planejamento financeiro personalizado com base na preocupação do usuário.
     
     Args:
         preocupacao (str): Preocupação financeira do usuário
         
     Returns:
-        str: Conselho financeiro personalizado
+        str: Planejamento financeiro personalizado
     """
     modelo = configurar_modelo_gemini()
     if not modelo:
-        return "Não foi possível gerar um conselho. Verifique a configuração da API Key."
+        return "Não foi possível gerar um planejamento. Verifique a configuração da API Key."
     
     dados = st.session_state.dados_financeiros
     nome = st.session_state.nome_usuario
@@ -772,7 +772,7 @@ def gerar_conselho_financeiro(preocupacao):
             if "valor_total" in info_divida:
                 prompt_parts.append(f"Tenho uma dívida de {nome_divida} no valor de R${info_divida['valor_total']:.2f}.")
         
-        # Instruções para o formato do conselho
+        # Instruções para o formato do planejamento
         prompt_parts.extend([
             "\nVocê é um consultor financeiro experiente, empático, motivador e bem detalhista.",
             "Preciso de ajuda para lidar com essa situação.",
@@ -792,15 +792,15 @@ def gerar_conselho_financeiro(preocupacao):
         st.session_state.historico_consultas.append({
             "data": datetime.now(),
             "preocupacao": preocupacao,
-            "conselho": response.text
+            "planejamento": response.text
         })
         
         # Adicionar pontos pela consulta
-        adicionar_pontos(10, "Solicitou um conselho financeiro")
+        adicionar_pontos(10, "Solicitou um planejamento financeiro")
         
         return response.text
     except Exception as e:
-        return f"Erro ao gerar conselho: {e}"
+        return f"Erro ao gerar planejamento: {e}"
 
 def simular_negociacao_divida(credor, valor_divida, dias_atraso):
     """
@@ -1156,7 +1156,7 @@ def pagina_dashboard():
 
 def pagina_consultor():
     """
-    Exibe a página do consultor virtual para tirar dúvidas e receber conselhos.
+    Exibe a página do consultor virtual para tirar dúvidas e receber planejamento.
     """
     st.markdown("## 💬 Consultor Virtual Inteligente")
     
@@ -1169,10 +1169,10 @@ def pagina_consultor():
     # Abas para diferentes funcionalidades
     tab1, tab2, tab3 = st.tabs(["Planejamento Financeiro", "Simulador de Negociação", "Glossário Financeiro"])
     
-    # Aba de Conselho Financeiro
+    # Aba de Planejamento Financeiro
     with tab1:
-        st.markdown("### Conselho Financeiro Personalizado")
-        st.markdown("Compartilhe sua principal preocupação financeira e receba um conselho personalizado.")
+        st.markdown("### Planejamento Financeiro Personalizado")
+        st.markdown("Compartilhe sua principal preocupação financeira e receba um planejamento personalizado.")
         
         preocupacao = st.text_area(
             "Qual sua principal preocupação financeira no momento?",
@@ -1180,17 +1180,17 @@ def pagina_consultor():
             height=100
         )
         
-        if st.button("Obter Conselho", key="btn_conselho"):
+        if st.button("Obter planejamento", key="planejamento"):
             if preocupacao:
-                with st.spinner("Gerando conselho personalizado..."):
-                    conselho = gerar_conselho_financeiro(preocupacao)
+                with st.spinner("Gerando planejamento personalizado..."):
+                    planejamento = gerar_planejamento_financeiro(preocupacao)
                     st.markdown(f"""
                     <div class="success-box">
-                        {conselho}
+                        {planejamento}
                     </div>
                     """, unsafe_allow_html=True)
             else:
-                st.error("Por favor, descreva sua preocupação para receber um conselho.")
+                st.error("Por favor, descreva sua preocupação para receber um planejamento.")
         
         # Exibir histórico de consultas
         if st.session_state.historico_consultas:
@@ -1202,7 +1202,7 @@ def pagina_consultor():
                 
                 with st.expander(f"Consulta de {consulta['data'].strftime('%d/%m/%Y %H:%M')}"):
                     st.markdown(f"**Preocupação:** {consulta['preocupacao']}")
-                    st.markdown(f"**Conselho:**\n{consulta['conselho']}")
+                    st.markdown(f"**Planejamento:**\n{consulta['planejamento']}")
     
     # Aba de Simulador de Negociação
     with tab2:
