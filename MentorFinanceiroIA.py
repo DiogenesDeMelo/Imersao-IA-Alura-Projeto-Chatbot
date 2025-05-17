@@ -33,7 +33,7 @@ def aplicar_estilo():
     <style>
         /* Estilo geral */
         .main {
-            background-color: #f5f7f9;
+            background-color: #185fa5;
             padding: 20px;
         }
         
