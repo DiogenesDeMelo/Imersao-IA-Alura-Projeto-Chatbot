@@ -77,6 +77,7 @@ A gente acredita na melhoria contínua! Então, saca só:
 📊➡️📄 Planilhas? Sim, por favor! Uma integração com Google Sheets pra importar e exportar dados financeiros cairia como uma luva.
 
 🐛 Caça aos Bugs nos Desafios: Estamos de olho 👀 e trabalhando para que a seção de desafios fique 100% e sem perrengues na hora de aceitá-los. Contamos com a sua paciência!
+🐛 Caça aos Bugs nos Dashboard: Ele ainda dá erro ao calcular o tempo para quitação de dívidas, mas uma hora vai dar certo rsrsrs!
 
 🆘 Deu ruim? Precisa de uma luz?
 Se pintar alguma dúvida, sugestão ou só quiser trocar uma ideia:
