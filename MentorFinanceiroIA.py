@@ -554,7 +554,7 @@ def exibir_barra_lateral():
     if 'api_key_configurada' in st.session_state and st.session_state.api_key_configurada:
         st.sidebar.success("✅ API Gemini configurada")
     else:
-        st.sidebar.warning("⚠️ API Gemini não configurada")
+        st.sidebar.warning("⚠️ API Gemini não configurada(Aguardando Inserção do Nome...)")
         configurar_api_key() # Tenta configurar se não estiver
     
     st.sidebar.markdown("---")
