@@ -986,7 +986,7 @@ def pagina_educacional():
     cols_dicas = st.columns(len(dicas_rapidas))
     for idx, (titulo_dica, desc_dica) in enumerate(dicas_rapidas):
         with cols_dicas[idx]:
-            st.markdown(f"<div class='info-box' style='background-color: #e3f2fd; border-left-color: #2196f3;'><h4>{titulo_dica}</h4><p>{desc_dica}</p></div>", unsafe_allow_html=True)
+            st.markdown(f"<div class='info-box' style='background-color: #2196f3; border-left-color: #e3f2fd;'><h4>{titulo_dica}</h4><p>{desc_dica}</p></div>", unsafe_allow_html=True)
 
 def pagina_conquistas():
     st.markdown("## 🏆 Suas Conquistas e Progresso")
