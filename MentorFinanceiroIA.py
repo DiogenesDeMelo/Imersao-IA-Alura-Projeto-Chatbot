@@ -886,7 +886,7 @@ def pagina_desafios():
         # Usar st.container para agrupar o card do desafio proposto
         with st.container():
             st.markdown(f"""
-            <div class="challenge-card" style="background-color: #fafafa; border-left: 5px solid #c97ffa;">
+            <div class="challenge-card" style="background-color: #a225f5; border-left: 5px solid #c97ffa;">
                 <h4 style="color: #5c1691;">{desafio['titulo']}</h4>
                 <p>{desafio['descricao']}</p>
                 <p><strong>Dificuldade:</strong> {desafio['dificuldade']} | <strong>Pontos:</strong> {desafio['pontos']}</p>
