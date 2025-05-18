@@ -73,7 +73,7 @@ def aplicar_estilo():
         
         /* Estilo para barras de progresso */
         .stProgress > div > div {
-            background-color: #5c1691; /* Roxo */
+            background-color: ; /* Roxo */
         }
         
         /* Estilo para botões */
