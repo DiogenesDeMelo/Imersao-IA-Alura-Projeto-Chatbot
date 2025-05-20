@@ -476,7 +476,7 @@ def gerar_planejamento_financeiro(preocupacao):
             "Preciso de um plano de ação detalhado e prático para lidar com essa situação, em português do Brasil:",
             "1. Mensagem curta de encorajamento (1-2 frases).",
             "2. Análise breve da situação com base nos dados fornecidos.",
-            "3. Plano de Ação Passo-a-Passo (numerado), com sugestões concretas, incluindo valores se possível (ex: economizar X, direcionar Y para dívida Z).",
+            "3. Planejamento Financeiro Passo-a-Passo (numerado), com sugestões concretas, incluindo valores se possível (ex: economizar X, direcionar Y para dívida Z).",
             "4. Se a renda for insuficiente, sugira 1-2 ideias realistas de renda extra adequadas ao contexto brasileiro.",
             "5. Dica final motivadora (1 frase).",
             "Seja claro, direto, use linguagem acessível. Formate com Markdown (negrito, listas)."
